@@ -4,11 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TimeWarnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TimeWarnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="p_GetCarrierByZipCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ZipCode" Type="varchar" Mode="In" />
         </Function>
         <Function Name="p_InsertOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Unit" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="StreetAddress" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="City" Type="nvarchar" Mode="In" />
@@ -32,16 +33,16 @@
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="TimeWarnerModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TimeWarnerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="TimeWarnerEntities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="p_GetCarrierByZipCode" ReturnType="Collection(TimeWarnerModel.p_GetCarrierByZipCode_Result)">
-            <Parameter Name="ZipCode" Mode="In" Type="String" />
+          <Parameter Name="ZipCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="p_InsertOrder" ReturnType="Collection(Guid)">
+            <Parameter Name="OrderId" Mode="In" Type="Guid" />
             <Parameter Name="Unit" Mode="In" Type="String" />
             <Parameter Name="StreetAddress" Mode="In" Type="String" />
             <Parameter Name="City" Mode="In" Type="String" />

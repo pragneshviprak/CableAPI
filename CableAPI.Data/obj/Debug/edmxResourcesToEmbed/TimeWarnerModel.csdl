@@ -5,6 +5,7 @@
       <Parameter Name="ZipCode" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="p_InsertOrder" ReturnType="Collection(Guid)">
+      <Parameter Name="OrderId" Mode="In" Type="Guid" />
       <Parameter Name="Unit" Mode="In" Type="String" />
       <Parameter Name="StreetAddress" Mode="In" Type="String" />
       <Parameter Name="City" Mode="In" Type="String" />

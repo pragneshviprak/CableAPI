@@ -4,6 +4,7 @@
     <Parameter Name="ZipCode" Type="varchar" Mode="In" />
   </Function>
   <Function Name="p_InsertOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="Unit" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="StreetAddress" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="City" Type="nvarchar" Mode="In" />

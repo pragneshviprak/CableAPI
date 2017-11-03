@@ -37,8 +37,12 @@ namespace CableAPI.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<p_GetCarrierByZipCode_Result>("p_GetCarrierByZipCode", zipCodeParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> p_InsertOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone)
+        public virtual ObjectResult<Nullable<System.Guid>> p_InsertOrder(Nullable<System.Guid> orderId, string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone)
         {
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("OrderId", orderId) :
+                new ObjectParameter("OrderId", typeof(System.Guid));
+    
             var unitParameter = unit != null ?
                 new ObjectParameter("Unit", unit) :
                 new ObjectParameter("Unit", typeof(string));
@@ -75,7 +79,7 @@ namespace CableAPI.Data
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("p_InsertOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("p_InsertOrder", orderIdParameter, unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter);
         }
     
         public virtual int p_UpdateOrder(Nullable<System.Guid> orderId, string orderStatus, string accountNumber, string serviceType, string workOrderId, string notes)

@@ -13,7 +13,7 @@ namespace CableAPI.Models
 		public class Reply
 		{
 			public string status { get; set; }
-			public string msg { get; set; }
+			public string message { get; set; }
 			public string error { get; set; }
 			public dynamic data { get; set; }
 		}
@@ -33,7 +33,7 @@ namespace CableAPI.Models
 			var reply = new Reply
 			{
 				status = isError ? Message.FAIL : Message.SUCCESS,
-				msg = isError ? "" : txt,
+				message = isError ? "" : txt,
 				error = isError ? txt : null,
 				data = data,
 			};
