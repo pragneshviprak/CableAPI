@@ -21,5 +21,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="SecurityTokens">
+      <EntityTypeMapping TypeName="TimeWarnerModel.SecurityToken">
+        <MappingFragment StoreEntitySet="SecurityToken">
+          <ScalarProperty Name="Token" ColumnName="Token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

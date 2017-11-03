@@ -27,6 +27,7 @@ namespace CableAPI.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<SecurityToken> SecurityTokens { get; set; }
     
         public virtual ObjectResult<p_GetCarrierByZipCode_Result> p_GetCarrierByZipCode(string zipCode)
         {

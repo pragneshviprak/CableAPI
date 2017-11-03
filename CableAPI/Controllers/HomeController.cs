@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CableAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,5 +15,11 @@ namespace CableAPI.Controllers
 
 			return View();
 		}
+
+		//public ActionResult NotAuthorized()
+		//{
+		//	return new ReturnFormat().Error("You are not Authorized to access.");
+		//}
 	}
+
 }

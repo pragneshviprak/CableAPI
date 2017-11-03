@@ -28,6 +28,7 @@
       <Parameter Name="UserName" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="SecurityTokens" EntityType="TimeWarnerModel.SecurityToken" />
   </EntityContainer>
   <ComplexType Name="p_GetCarrierByZipCode_Result">
     <Property Type="String" Name="Zipcode" Nullable="true" MaxLength="50" />
@@ -39,4 +40,10 @@
     <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
   </ComplexType>
+  <EntityType Name="SecurityToken">
+    <Key>
+      <PropertyRef Name="Token" />
+    </Key>
+    <Property Name="Token" Type="Guid" Nullable="false" />
+  </EntityType>
 </Schema>

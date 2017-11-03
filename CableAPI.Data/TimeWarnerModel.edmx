@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TimeWarnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TimeWarnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SecurityToken">
+          <Key>
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="Token" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <Function Name="p_GetCarrierByZipCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ZipCode" Type="varchar" Mode="In" />
         </Function>
@@ -32,7 +40,13 @@
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
-        <EntityContainer Name="TimeWarnerModelStoreContainer" />
+        <EntityContainer Name="TimeWarnerModelStoreContainer">
+          <EntitySet Name="SecurityToken" EntityType="Self.SecurityToken" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SecurityToken].[Token] AS [Token]
+    FROM [dbo].[SecurityToken] AS [SecurityToken]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -65,6 +79,7 @@
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SecurityTokens" EntityType="TimeWarnerModel.SecurityToken" />
         </EntityContainer>
         <ComplexType Name="p_GetCarrierByZipCode_Result">
           <Property Type="String" Name="Zipcode" Nullable="true" MaxLength="50" />
@@ -76,6 +91,12 @@
           <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <EntityType Name="SecurityToken">
+          <Key>
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="Token" Type="Guid" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -102,6 +123,13 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SecurityTokens">
+            <EntityTypeMapping TypeName="TimeWarnerModel.SecurityToken">
+              <MappingFragment StoreEntitySet="SecurityToken">
+                <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
