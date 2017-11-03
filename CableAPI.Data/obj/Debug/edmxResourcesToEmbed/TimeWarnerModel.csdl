@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimeWarnerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TimeWarnerEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="p_GetCarrierByZipCode" ReturnType="Collection(TimeWarnerModel.p_GetCarrierByZipCode_Result)">
+      <Parameter Name="ZipCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="p_InsertOrder" ReturnType="Collection(Guid)">
+      <Parameter Name="Unit" Mode="In" Type="String" />
+      <Parameter Name="StreetAddress" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="ZipCode" Mode="In" Type="String" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="p_UpdateOrder">
+      <Parameter Name="OrderId" Mode="In" Type="Guid" />
+      <Parameter Name="OrderStatus" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="ServiceType" Mode="In" Type="String" />
+      <Parameter Name="WorkOrderId" Mode="In" Type="String" />
+      <Parameter Name="Notes" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="p_VerifyUser" ReturnType="Collection(TimeWarnerModel.p_VerifyUser_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="p_GetCarrierByZipCode_Result">
+    <Property Type="String" Name="Zipcode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ConnType" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="p_VerifyUser_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TimeWarnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="p_GetCarrierByZipCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ZipCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="p_InsertOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Unit" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StreetAddress" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="ZipCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="p_UpdateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OrderStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ServiceType" Type="varchar" Mode="In" />
+          <Parameter Name="WorkOrderId" Type="varchar" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="p_VerifyUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TimeWarnerModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TimeWarnerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TimeWarnerEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="p_GetCarrierByZipCode" ReturnType="Collection(TimeWarnerModel.p_GetCarrierByZipCode_Result)">
+            <Parameter Name="ZipCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_InsertOrder" ReturnType="Collection(Guid)">
+            <Parameter Name="Unit" Mode="In" Type="String" />
+            <Parameter Name="StreetAddress" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="ZipCode" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_UpdateOrder">
+            <Parameter Name="OrderId" Mode="In" Type="Guid" />
+            <Parameter Name="OrderStatus" Mode="In" Type="String" />
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="ServiceType" Mode="In" Type="String" />
+            <Parameter Name="WorkOrderId" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_VerifyUser" ReturnType="Collection(TimeWarnerModel.p_VerifyUser_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="p_GetCarrierByZipCode_Result">
+          <Property Type="String" Name="Zipcode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ConnType" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="p_VerifyUser_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TimeWarnerModelStoreContainer" CdmEntityContainer="TimeWarnerEntities" >
+          <FunctionImportMapping FunctionImportName="p_GetCarrierByZipCode" FunctionName="TimeWarnerModel.Store.p_GetCarrierByZipCode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TimeWarnerModel.p_GetCarrierByZipCode_Result">
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="ConnType" ColumnName="ConnType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_InsertOrder" FunctionName="TimeWarnerModel.Store.p_InsertOrder" />
+          <FunctionImportMapping FunctionImportName="p_UpdateOrder" FunctionName="TimeWarnerModel.Store.p_UpdateOrder" />
+          <FunctionImportMapping FunctionImportName="p_VerifyUser" FunctionName="TimeWarnerModel.Store.p_VerifyUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TimeWarnerModel.p_VerifyUser_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
