@@ -15,6 +15,7 @@ D:\projects\CableAPI\CableAPI\bin\CableAPI.dll.config
 D:\projects\CableAPI\CableAPI\bin\CableAPI.dll
 D:\projects\CableAPI\CableAPI\bin\CableAPI.pdb
 D:\projects\CableAPI\CableAPI\bin\Antlr3.Runtime.dll
+D:\projects\CableAPI\CableAPI\bin\CableAPI.Data.dll
 D:\projects\CableAPI\CableAPI\bin\EntityFramework.dll
 D:\projects\CableAPI\CableAPI\bin\EntityFramework.SqlServer.dll
 D:\projects\CableAPI\CableAPI\bin\Microsoft.AI.Agent.Intercept.dll
@@ -52,6 +53,7 @@ D:\projects\CableAPI\CableAPI\bin\System.Web.WebPages.Deployment.dll
 D:\projects\CableAPI\CableAPI\bin\System.Web.WebPages.dll
 D:\projects\CableAPI\CableAPI\bin\System.Web.WebPages.Razor.dll
 D:\projects\CableAPI\CableAPI\bin\WebGrease.dll
+D:\projects\CableAPI\CableAPI\bin\CableAPI.Data.pdb
 D:\projects\CableAPI\CableAPI\bin\Microsoft.AI.DependencyCollector.xml
 D:\projects\CableAPI\CableAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\projects\CableAPI\CableAPI\bin\Microsoft.AI.Web.xml
@@ -88,5 +90,3 @@ D:\projects\CableAPI\CableAPI\bin\System.Web.Http.Owin.xml
 D:\projects\CableAPI\CableAPI\obj\Debug\CableAPI.csprojResolveAssemblyReference.cache
 D:\projects\CableAPI\CableAPI\obj\Debug\CableAPI.dll
 D:\projects\CableAPI\CableAPI\obj\Debug\CableAPI.pdb
-D:\projects\CableAPI\CableAPI\bin\CableAPI.Data.dll
-D:\projects\CableAPI\CableAPI\bin\CableAPI.Data.pdb

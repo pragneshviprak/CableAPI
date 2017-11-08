@@ -5,7 +5,6 @@
       <Parameter Name="ZipCode" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="p_InsertOrder" ReturnType="Collection(Guid)">
-      <Parameter Name="OrderId" Mode="In" Type="Guid" />
       <Parameter Name="Unit" Mode="In" Type="String" />
       <Parameter Name="StreetAddress" Mode="In" Type="String" />
       <Parameter Name="City" Mode="In" Type="String" />
@@ -15,20 +14,45 @@
       <Parameter Name="LastName" Mode="In" Type="String" />
       <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="ServiceType" Mode="In" Type="String" />
+      <Parameter Name="WorkOrderId" Mode="In" Type="String" />
+      <Parameter Name="Notes" Mode="In" Type="String" />
+      <Parameter Name="CarrierName" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="p_UpdateOrder">
+      <Parameter Name="Unit" Mode="In" Type="String" />
+      <Parameter Name="StreetAddress" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="ZipCode" Mode="In" Type="String" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
       <Parameter Name="OrderId" Mode="In" Type="Guid" />
       <Parameter Name="OrderStatus" Mode="In" Type="String" />
       <Parameter Name="AccountNumber" Mode="In" Type="String" />
       <Parameter Name="ServiceType" Mode="In" Type="String" />
       <Parameter Name="WorkOrderId" Mode="In" Type="String" />
       <Parameter Name="Notes" Mode="In" Type="String" />
+      <Parameter Name="CarrierName" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="p_VerifyUser" ReturnType="Collection(TimeWarnerModel.p_VerifyUser_Result)">
       <Parameter Name="UserName" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="SecurityTokens" EntityType="TimeWarnerModel.SecurityToken" />
+    <FunctionImport Name="p_GetOrderList" ReturnType="Collection(TimeWarnerModel.p_GetOrderList_Result)">
+      <Parameter Name="Userid" Mode="In" Type="Int32" />
+      <Parameter Name="OrderStatus" Mode="In" Type="String" />
+      <Parameter Name="CarrierName" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="p_GetCarrierByZipCode_Result">
     <Property Type="String" Name="Zipcode" Nullable="true" MaxLength="50" />
@@ -46,4 +70,15 @@
     </Key>
     <Property Name="Token" Type="Guid" Nullable="false" />
   </EntityType>
+  <ComplexType Name="p_GetOrderList_Result">
+    <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="State" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="UserId" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CarrierName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+  </ComplexType>
 </Schema>

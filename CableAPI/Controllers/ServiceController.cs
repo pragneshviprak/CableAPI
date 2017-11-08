@@ -14,7 +14,7 @@ namespace CableAPI.Controllers
 	{
 		TimeWarnerEntities _context = new TimeWarnerEntities();
 
-		[HttpGet]
+		[HttpPost]
 		public JsonResult VerifyUser(string UserName, string Password)
 		{
 			try
@@ -28,7 +28,7 @@ namespace CableAPI.Controllers
 			}
 		}
 
-		[HttpGet]
+		[HttpPost]
 		public JsonResult GetCarrierByZipCode(string zipCode)
 		{
 			try
@@ -47,8 +47,7 @@ namespace CableAPI.Controllers
 		{
 			try
 			{
-				_Order.OrderId = Guid.NewGuid();
-				var OrderId = _context.p_InsertOrder(_Order.OrderId, _Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone).FirstOrDefault();
+				var OrderId = _context.p_InsertOrder(_Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone, _Order.Status, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes, _Order.CarrierName, _Order.UserId).FirstOrDefault();
 				return new ReturnFormat().Success("Record Inserted Successfull.", OrderId);
 			}
 			catch (Exception ex)
@@ -62,8 +61,22 @@ namespace CableAPI.Controllers
 		{
 			try
 			{
-				var OrderId = _context.p_UpdateOrder(_Order.OrderId, _Order.OrderStatus, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes);
-				return new ReturnFormat().Success("Record Updated.", OrderId);
+				_context.p_UpdateOrder(_Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone, _Order.OrderId, _Order.Status, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes, _Order.CarrierName, _Order.UserId);
+				return new ReturnFormat().Success("Record Updated.", _Order.OrderId);
+			}
+			catch (Exception ex)
+			{
+				return new ReturnFormat().Error(ex.Message.ToString());
+			}
+		}
+
+		[HttpPost]
+		public JsonResult GetOrderList(int UserId, string Status, string CarrierName, DateTime FromDate, DateTime ToDate)
+		{
+			try
+			{
+				var OrderData = _context.p_GetOrderList(UserId, Status, CarrierName, FromDate, ToDate).ToList();
+				return new ReturnFormat().Success(Message.SUCCESS, OrderData);
 			}
 			catch (Exception ex)
 			{

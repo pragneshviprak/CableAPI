@@ -142,6 +142,9 @@
     <Compile Include="p_GetCarrierByZipCode_Result.cs">
       <DependentUpon>TimeWarnerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="p_GetOrderList_Result.cs">
+      <DependentUpon>TimeWarnerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="p_VerifyUser_Result.cs">
       <DependentUpon>TimeWarnerModel.tt</DependentUpon>
     </Compile>

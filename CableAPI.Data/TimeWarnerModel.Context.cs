@@ -38,12 +38,8 @@ namespace CableAPI.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<p_GetCarrierByZipCode_Result>("p_GetCarrierByZipCode", zipCodeParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> p_InsertOrder(Nullable<System.Guid> orderId, string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone)
+        public virtual ObjectResult<Nullable<System.Guid>> p_InsertOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone, string status, string accountNumber, string serviceType, string workOrderId, string notes, string carrierName, Nullable<int> userId)
         {
-            var orderIdParameter = orderId.HasValue ?
-                new ObjectParameter("OrderId", orderId) :
-                new ObjectParameter("OrderId", typeof(System.Guid));
-    
             var unitParameter = unit != null ?
                 new ObjectParameter("Unit", unit) :
                 new ObjectParameter("Unit", typeof(string));
@@ -80,11 +76,75 @@ namespace CableAPI.Data
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("p_InsertOrder", orderIdParameter, unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter);
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            var accountNumberParameter = accountNumber != null ?
+                new ObjectParameter("AccountNumber", accountNumber) :
+                new ObjectParameter("AccountNumber", typeof(string));
+    
+            var serviceTypeParameter = serviceType != null ?
+                new ObjectParameter("ServiceType", serviceType) :
+                new ObjectParameter("ServiceType", typeof(string));
+    
+            var workOrderIdParameter = workOrderId != null ?
+                new ObjectParameter("WorkOrderId", workOrderId) :
+                new ObjectParameter("WorkOrderId", typeof(string));
+    
+            var notesParameter = notes != null ?
+                new ObjectParameter("Notes", notes) :
+                new ObjectParameter("Notes", typeof(string));
+    
+            var carrierNameParameter = carrierName != null ?
+                new ObjectParameter("CarrierName", carrierName) :
+                new ObjectParameter("CarrierName", typeof(string));
+    
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("p_InsertOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter, statusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter, carrierNameParameter, userIdParameter);
         }
     
-        public virtual int p_UpdateOrder(Nullable<System.Guid> orderId, string orderStatus, string accountNumber, string serviceType, string workOrderId, string notes)
+        public virtual int p_UpdateOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone, Nullable<System.Guid> orderId, string orderStatus, string accountNumber, string serviceType, string workOrderId, string notes, string carrierName, Nullable<int> userId)
         {
+            var unitParameter = unit != null ?
+                new ObjectParameter("Unit", unit) :
+                new ObjectParameter("Unit", typeof(string));
+    
+            var streetAddressParameter = streetAddress != null ?
+                new ObjectParameter("StreetAddress", streetAddress) :
+                new ObjectParameter("StreetAddress", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stateParameter = state != null ?
+                new ObjectParameter("State", state) :
+                new ObjectParameter("State", typeof(string));
+    
+            var zipCodeParameter = zipCode != null ?
+                new ObjectParameter("ZipCode", zipCode) :
+                new ObjectParameter("ZipCode", typeof(string));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("Phone", phone) :
+                new ObjectParameter("Phone", typeof(string));
+    
             var orderIdParameter = orderId.HasValue ?
                 new ObjectParameter("OrderId", orderId) :
                 new ObjectParameter("OrderId", typeof(System.Guid));
@@ -109,7 +169,15 @@ namespace CableAPI.Data
                 new ObjectParameter("Notes", notes) :
                 new ObjectParameter("Notes", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("p_UpdateOrder", orderIdParameter, orderStatusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter);
+            var carrierNameParameter = carrierName != null ?
+                new ObjectParameter("CarrierName", carrierName) :
+                new ObjectParameter("CarrierName", typeof(string));
+    
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("p_UpdateOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter, orderIdParameter, orderStatusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter, carrierNameParameter, userIdParameter);
         }
     
         public virtual ObjectResult<p_VerifyUser_Result> p_VerifyUser(string userName, string password)
@@ -123,6 +191,31 @@ namespace CableAPI.Data
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<p_VerifyUser_Result>("p_VerifyUser", userNameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<p_GetOrderList_Result> p_GetOrderList(Nullable<int> userid, string orderStatus, string carrierName, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("Userid", userid) :
+                new ObjectParameter("Userid", typeof(int));
+    
+            var orderStatusParameter = orderStatus != null ?
+                new ObjectParameter("OrderStatus", orderStatus) :
+                new ObjectParameter("OrderStatus", typeof(string));
+    
+            var carrierNameParameter = carrierName != null ?
+                new ObjectParameter("CarrierName", carrierName) :
+                new ObjectParameter("CarrierName", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<p_GetOrderList_Result>("p_GetOrderList", useridParameter, orderStatusParameter, carrierNameParameter, fromDateParameter, toDateParameter);
         }
     }
 }

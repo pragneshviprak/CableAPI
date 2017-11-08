@@ -16,8 +16,14 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
         <Function Name="p_GetCarrierByZipCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ZipCode" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="p_GetOrderList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Userid" Type="int" Mode="In" />
+          <Parameter Name="OrderStatus" Type="varchar" Mode="In" />
+          <Parameter Name="CarrierName" Type="varchar" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="p_InsertOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrderId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Unit" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="StreetAddress" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="City" Type="nvarchar" Mode="In" />
@@ -27,14 +33,32 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+          <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ServiceType" Type="varchar" Mode="In" />
+          <Parameter Name="WorkOrderId" Type="varchar" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CarrierName" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
         <Function Name="p_UpdateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Unit" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StreetAddress" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="ZipCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
           <Parameter Name="OrderId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="OrderStatus" Type="nvarchar" Mode="In" />
           <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="ServiceType" Type="varchar" Mode="In" />
           <Parameter Name="WorkOrderId" Type="varchar" Mode="In" />
           <Parameter Name="Notes" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CarrierName" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
         <Function Name="p_VerifyUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
@@ -56,7 +80,6 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
           <Parameter Name="ZipCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="p_InsertOrder" ReturnType="Collection(Guid)">
-            <Parameter Name="OrderId" Mode="In" Type="Guid" />
             <Parameter Name="Unit" Mode="In" Type="String" />
             <Parameter Name="StreetAddress" Mode="In" Type="String" />
             <Parameter Name="City" Mode="In" Type="String" />
@@ -66,20 +89,45 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="ServiceType" Mode="In" Type="String" />
+            <Parameter Name="WorkOrderId" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="CarrierName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="p_UpdateOrder">
+            <Parameter Name="Unit" Mode="In" Type="String" />
+            <Parameter Name="StreetAddress" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="ZipCode" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
             <Parameter Name="OrderId" Mode="In" Type="Guid" />
             <Parameter Name="OrderStatus" Mode="In" Type="String" />
             <Parameter Name="AccountNumber" Mode="In" Type="String" />
             <Parameter Name="ServiceType" Mode="In" Type="String" />
             <Parameter Name="WorkOrderId" Mode="In" Type="String" />
             <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="CarrierName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="p_VerifyUser" ReturnType="Collection(TimeWarnerModel.p_VerifyUser_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="SecurityTokens" EntityType="TimeWarnerModel.SecurityToken" />
+          <FunctionImport Name="p_GetOrderList" ReturnType="Collection(TimeWarnerModel.p_GetOrderList_Result)">
+            <Parameter Name="Userid" Mode="In" Type="Int32" />
+            <Parameter Name="OrderStatus" Mode="In" Type="String" />
+            <Parameter Name="CarrierName" Mode="In" Type="String" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="p_GetCarrierByZipCode_Result">
           <Property Type="String" Name="Zipcode" Nullable="true" MaxLength="50" />
@@ -97,6 +145,17 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
           </Key>
           <Property Name="Token" Type="Guid" Nullable="false" />
         </EntityType>
+        <ComplexType Name="p_GetOrderList_Result">
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CarrierName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -130,6 +189,21 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_GetOrderList" FunctionName="TimeWarnerModel.Store.p_GetOrderList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TimeWarnerModel.p_GetOrderList_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
