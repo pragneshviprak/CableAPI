@@ -21,6 +21,7 @@
       <Parameter Name="Notes" Mode="In" Type="String" />
       <Parameter Name="CarrierName" Mode="In" Type="String" />
       <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="OrderType" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="p_UpdateOrder">
       <Parameter Name="Unit" Mode="In" Type="String" />
@@ -40,6 +41,7 @@
       <Parameter Name="Notes" Mode="In" Type="String" />
       <Parameter Name="CarrierName" Mode="In" Type="String" />
       <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="OrderType" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="p_VerifyUser" ReturnType="Collection(TimeWarnerModel.p_VerifyUser_Result)">
       <Parameter Name="UserName" Mode="In" Type="String" />

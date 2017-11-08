@@ -26,5 +26,6 @@ namespace CableAPI.Models
 
 		public string CarrierName { get; set; }
 		public int UserId { get; set; }
+		public string OrderType { get; set; }
 	}
 }

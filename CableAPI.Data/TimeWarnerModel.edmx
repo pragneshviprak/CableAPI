@@ -40,6 +40,7 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
           <Parameter Name="Notes" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="CarrierName" Type="varchar" Mode="In" />
           <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="OrderType" Type="varchar" Mode="In" />
         </Function>
         <Function Name="p_UpdateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Unit" Type="nvarchar(max)" Mode="In" />
@@ -59,6 +60,7 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
           <Parameter Name="Notes" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="CarrierName" Type="varchar" Mode="In" />
           <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="OrderType" Type="varchar" Mode="In" />
         </Function>
         <Function Name="p_VerifyUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
@@ -96,6 +98,7 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
             <Parameter Name="Notes" Mode="In" Type="String" />
             <Parameter Name="CarrierName" Mode="In" Type="String" />
             <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="p_UpdateOrder">
             <Parameter Name="Unit" Mode="In" Type="String" />
@@ -115,6 +118,7 @@ warning 6002: The table/view 'TimeWarner.dbo.SecurityToken' does not have a prim
             <Parameter Name="Notes" Mode="In" Type="String" />
             <Parameter Name="CarrierName" Mode="In" Type="String" />
             <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="p_VerifyUser" ReturnType="Collection(TimeWarnerModel.p_VerifyUser_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />

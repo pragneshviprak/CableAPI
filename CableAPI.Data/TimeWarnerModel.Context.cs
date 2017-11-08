@@ -38,7 +38,7 @@ namespace CableAPI.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<p_GetCarrierByZipCode_Result>("p_GetCarrierByZipCode", zipCodeParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> p_InsertOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone, string status, string accountNumber, string serviceType, string workOrderId, string notes, string carrierName, Nullable<int> userId)
+        public virtual ObjectResult<Nullable<System.Guid>> p_InsertOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone, string status, string accountNumber, string serviceType, string workOrderId, string notes, string carrierName, Nullable<int> userId, string orderType)
         {
             var unitParameter = unit != null ?
                 new ObjectParameter("Unit", unit) :
@@ -104,10 +104,14 @@ namespace CableAPI.Data
                 new ObjectParameter("UserId", userId) :
                 new ObjectParameter("UserId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("p_InsertOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter, statusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter, carrierNameParameter, userIdParameter);
+            var orderTypeParameter = orderType != null ?
+                new ObjectParameter("OrderType", orderType) :
+                new ObjectParameter("OrderType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("p_InsertOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter, statusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter, carrierNameParameter, userIdParameter, orderTypeParameter);
         }
     
-        public virtual int p_UpdateOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone, Nullable<System.Guid> orderId, string orderStatus, string accountNumber, string serviceType, string workOrderId, string notes, string carrierName, Nullable<int> userId)
+        public virtual int p_UpdateOrder(string unit, string streetAddress, string city, string state, string zipCode, string firstName, string lastName, string email, string phone, Nullable<System.Guid> orderId, string orderStatus, string accountNumber, string serviceType, string workOrderId, string notes, string carrierName, Nullable<int> userId, string orderType)
         {
             var unitParameter = unit != null ?
                 new ObjectParameter("Unit", unit) :
@@ -177,7 +181,11 @@ namespace CableAPI.Data
                 new ObjectParameter("UserId", userId) :
                 new ObjectParameter("UserId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("p_UpdateOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter, orderIdParameter, orderStatusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter, carrierNameParameter, userIdParameter);
+            var orderTypeParameter = orderType != null ?
+                new ObjectParameter("OrderType", orderType) :
+                new ObjectParameter("OrderType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("p_UpdateOrder", unitParameter, streetAddressParameter, cityParameter, stateParameter, zipCodeParameter, firstNameParameter, lastNameParameter, emailParameter, phoneParameter, orderIdParameter, orderStatusParameter, accountNumberParameter, serviceTypeParameter, workOrderIdParameter, notesParameter, carrierNameParameter, userIdParameter, orderTypeParameter);
         }
     
         public virtual ObjectResult<p_VerifyUser_Result> p_VerifyUser(string userName, string password)

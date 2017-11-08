@@ -19,7 +19,7 @@ namespace CableAPI.Controllers
 		{
 			try
 			{
-				var UserData = _context.p_VerifyUser(UserName, Password).ToList();
+				var UserData = _context.p_VerifyUser(UserName, Password).FirstOrDefault();
 				return new ReturnFormat().Success(Message.SUCCESS, UserData);
 			}
 			catch (Exception ex)
@@ -33,7 +33,7 @@ namespace CableAPI.Controllers
 		{
 			try
 			{
-				var code = _context.p_GetCarrierByZipCode(zipCode).ToList();
+				var code = _context.p_GetCarrierByZipCode(zipCode).FirstOrDefault();
 				return new ReturnFormat().Success(Message.SUCCESS, code);
 			}
 			catch (Exception ex)
@@ -47,7 +47,7 @@ namespace CableAPI.Controllers
 		{
 			try
 			{
-				var OrderId = _context.p_InsertOrder(_Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone, _Order.Status, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes, _Order.CarrierName, _Order.UserId).FirstOrDefault();
+				var OrderId = _context.p_InsertOrder(_Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone, _Order.Status, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes, _Order.CarrierName, _Order.UserId, _Order.OrderType).FirstOrDefault();
 				return new ReturnFormat().Success("Record Inserted Successfull.", OrderId);
 			}
 			catch (Exception ex)
@@ -61,7 +61,7 @@ namespace CableAPI.Controllers
 		{
 			try
 			{
-				_context.p_UpdateOrder(_Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone, _Order.OrderId, _Order.Status, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes, _Order.CarrierName, _Order.UserId);
+				_context.p_UpdateOrder(_Order.Unit, _Order.StreetAddress, _Order.City, _Order.State, _Order.ZipCode, _Order.FirstName, _Order.LastName, _Order.Email, _Order.Phone, _Order.OrderId, _Order.Status, _Order.AccountNumber, _Order.ServiceType, _Order.WorkOrderId, _Order.Notes, _Order.CarrierName, _Order.UserId, _Order.OrderType);
 				return new ReturnFormat().Success("Record Updated.", _Order.OrderId);
 			}
 			catch (Exception ex)

@@ -32,6 +32,5 @@ D:\projects\CableAPI\CableAPI.Data\bin\Microsoft.AI.Web.xml
 D:\projects\CableAPI\CableAPI.Data\bin\Microsoft.AI.WindowsServer.xml
 D:\projects\CableAPI\CableAPI.Data\bin\Microsoft.ApplicationInsights.xml
 D:\projects\CableAPI\CableAPI.Data\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\projects\CableAPI\CableAPI.Data\obj\Debug\CableAPI.Data.csprojResolveAssemblyReference.cache
 D:\projects\CableAPI\CableAPI.Data\obj\Debug\CableAPI.Data.dll
 D:\projects\CableAPI\CableAPI.Data\obj\Debug\CableAPI.Data.pdb
